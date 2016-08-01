@@ -23,28 +23,28 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
     $scope.ChanUrl = response[0].data.url;
     //console.log(response[0].data);
     // Output for non-active accounts
-    if(response[0].data.error){$('#output').append('<div class="row">'+
-              '<div class="col-md-3"><img class="img-responsive" src="'+$scope.ChanLogo+'" alt="Account Closed Img" /></div>'+
-              '<div class="col-md-3"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
-              '<div class="col-md-6">Account Closed</div>'+
+    if(response[0].data.error){$('#output').append('<div class="row offline">'+
+              '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="Account Closed Img" /></div>'+
+              '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
+              '<div class="col-md-4">Account Closed</div>'+
               '</div>');
     // Output for offline accounts
     }else if(response[1].data.stream === null) {
         $scope.StrGame = "Offline";
-        $('#output').append('<div class="row">'+
-                  '<div class="col-md-3"><img class="img-responsive" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
-                  '<div class="col-md-3"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
-                  '<div class="col-md-6">'+$scope.StrGame+'</div>'+
+        $('#output').append('<div class="row offline">'+
+                  '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
+                  '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
+                  '<div class="col-md-4">'+$scope.StrGame+'</div>'+
                   '</div>'
         );
     }else {
       // Output for currently streaming accounts
       $scope.StrGame = response[1].data.stream.game;
       $scope.StrGameStatus = response[1].data.stream.channel.status;
-      $('#output').append('<div class="row">'+
-                '<div class="col-md-3"><img class="img-responsive" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
-                '<div class="col-md-3"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
-                '<div class="col-md-6">'+$scope.StrGame+ ': '+$scope.StrGameStatus+'</div>'+
+      $('#output').append('<div class="row online">'+
+                '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
+                '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
+                '<div class="col-md-4">'+$scope.StrGame+ ': '+$scope.StrGameStatus+'</div>'+
                 '</div>');
     }
   });// .then

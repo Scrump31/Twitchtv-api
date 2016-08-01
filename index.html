@@ -22,11 +22,17 @@
   </head>
   <body ng-app="twitchApp">
     <div class="container" ng-controller="ChannelCtrl">
+      <div class="jumbotron text-center">
+        <h1>Twitchtv Streamers</h1>
+        <h4>Online Channels: <input id="onbtn" ng-click="online()" type="checkbox"></h4>
+        <h4>Offline Channels: <input id="offbtn" ng-click="offline()" type="checkbox"></h4>
+      </div>
     <div id="output"></div>
 
     </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/filter.js"></script>
   </body>
 </html>
