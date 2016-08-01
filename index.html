@@ -18,27 +18,45 @@
       .container {
         border: 5px solid;
       }
-      .jumbotron {
-        margin-bottom: 1px;
+      header {
+        margin-bottom: 10px;
         background-color:#1679c3;
       }
+      header h1 {
+        padding-top: 10px;
+      }
+      header:nth-child(1) {
+          padding-bottom: 10px;
+      }
+
       .row {
         padding-top: 5px;
         padding-bottom: 5px;
-        border: 5px solid white;
+        border: 2px solid white;
+      }
+      .bg-sleep {
+        background-color: #eee;
       }
       img {
         width: 50px;
+      }
+      @media only screen and (max-width: 768px) {
+        .row {
+          text-align: center;
+        }
+        img.img-responsive {
+          display: inline-block;
+        }
       }
     </style>
   </head>
   <body ng-app="twitchApp">
     <div class="container" ng-controller="ChannelCtrl">
-      <div class="jumbotron text-center">
+      <header class="text-center">
         <h1>Twitchtv Streamers</h1>
         <h4>Online Channels: <input id="onbtn" ng-click="online()" type="checkbox"></h4>
         <h4>Offline Channels: <input id="offbtn" ng-click="offline()" type="checkbox"></h4>
-      </div>
+      </header>
     <div id="output"></div>
 
     </div>

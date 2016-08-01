@@ -30,13 +30,13 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
     // Output for non-active accounts
     if(response[0].data.error){$('#output').append('<div class="row bg-danger offline">'+
               '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="Account Closed Img" /></div>'+
-              '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
-              '<div class="col-md-4">Account Closed</div>'+
+              '<div class=" col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
+              '<div class=" col-md-4">Account Closed</div>'+
               '</div>');
     // Output for offline accounts
     }else if(response[1].data.stream === null) {
         $scope.StrGame = "Offline";
-        $('#output').append('<div class="row bg-warning offline">'+
+        $('#output').append('<div class="row bg-sleep offline">'+
                   '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
                   '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
                   '<div class="col-md-4">'+$scope.StrGame+'</div>'+
