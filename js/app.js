@@ -19,19 +19,17 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
   var streamData = $http.jsonp('https://api.twitch.tv/kraken/streams/'+value.name+'?callback=JSON_CALLBACK');
   $q.all([twitchChannel, streamData])
 .then(function(response) {
-    //use placeholder img if no img or account present
+    //use placeholder img if no img or account exists
     if(response[0].data.logo === null || response[0].data.error) {
       $scope.ChanLogo = 'http://www.sheffield.com/wp-content/uploads/2013/06/placeholder.png';
     }else{ $scope.ChanLogo = response[0].data.logo;}
-
-    //gets channel URL
+    //Get channel URL
     $scope.ChanUrl = response[0].data.url;
-    //console.log(response[0].data);
     // Output for non-active accounts
     if(response[0].data.error){$('#output').append('<div class="row bg-danger offline">'+
               '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="Account Closed Img" /></div>'+
-              '<div class=" col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
-              '<div class=" col-md-4">Account Closed</div>'+
+              '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
+              '<div class="col-md-4">Account Closed</div>'+
               '</div>');
     // Output for offline accounts
     }else if(response[1].data.stream === null) {
@@ -52,9 +50,9 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
                 '<div class="col-md-4">'+$scope.StrGame+ ': '+$scope.StrGameStatus+'</div>'+
                 '</div>');
     }
-  });// .then
+  });
   // Catches callback errors
   }, function errorCallback(response) {
            console.log(response.statusText);
   		});
-});// controller
+});

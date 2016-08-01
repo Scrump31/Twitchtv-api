@@ -5,5 +5,4 @@ $(document).ready(function(){
     $("#offbtn").click(function(){
         $(".online").toggle();
     });
-
 });
