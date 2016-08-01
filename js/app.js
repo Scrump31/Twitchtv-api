@@ -1,11 +1,16 @@
 var twitchApp = angular.module('twitchApp', []);
-//var twitchchannel = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
   myarray = [
   {"name": "freecodecamp"},
   {"name": "comster404"},
   {"name": "brunofin"},
-  {"name": "OgamingSC2"}
+  {"name": "OgamingSC2"},
+  {"name": "cretetion"},
+  {"name": "storbeck"},
+  {"name": "habathcx"},
+  {"name": "RobotCaleb"},
+  {"name": "noobs2ninjas"},
+  {"name": "ESL_SC2"}
   ];
   // Get API data for each myarray item
   angular.forEach(myarray, function(value, key) {
@@ -23,7 +28,7 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
     $scope.ChanUrl = response[0].data.url;
     //console.log(response[0].data);
     // Output for non-active accounts
-    if(response[0].data.error){$('#output').append('<div class="row offline">'+
+    if(response[0].data.error){$('#output').append('<div class="row bg-danger offline">'+
               '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="Account Closed Img" /></div>'+
               '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
               '<div class="col-md-4">Account Closed</div>'+
@@ -31,7 +36,7 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
     // Output for offline accounts
     }else if(response[1].data.stream === null) {
         $scope.StrGame = "Offline";
-        $('#output').append('<div class="row offline">'+
+        $('#output').append('<div class="row bg-warning offline">'+
                   '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
                   '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
                   '<div class="col-md-4">'+$scope.StrGame+'</div>'+
@@ -41,7 +46,7 @@ twitchApp.controller('ChannelCtrl', function($scope, $http, $q) {
       // Output for currently streaming accounts
       $scope.StrGame = response[1].data.stream.game;
       $scope.StrGameStatus = response[1].data.stream.channel.status;
-      $('#output').append('<div class="row online">'+
+      $('#output').append('<div class="row bg-success online">'+
                 '<div class="col-md-4"><img class="img-responsive img-circle" src="'+$scope.ChanLogo+'" alt="channel logo" /></div>'+
                 '<div class="col-md-4"><a href="'+$scope.ChanUrl+'">'+value.name+'</a></div>'+
                 '<div class="col-md-4">'+$scope.StrGame+ ': '+$scope.StrGameStatus+'</div>'+
